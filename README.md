@@ -27,10 +27,33 @@ timestamp.toDatetimeString(1552406400); // return datetime string of 2019-03-13T
 timestamp.toDatetimeString(1552406400, { format: 'YYYY-MM-DD' }); // return datetime string of 2019-03-13
 timestamp.toDatetimeString(1552406400, { format: 'HH:ss' }); // return datetime string of 00:00
 
-random.integer(min = 0, max = 100); // generate integer from 0 to 100
-random.number(min = 0, max = 100); // generate number from 0.0 to 100.0
-random.boolean(); // true or false
-random.bytes(len = 16); // generate cryptographically strong pseudo-random data
-random.string(len = 16, type = 'alphanumeric', capitalization = 'lowercase'); // generate random string
+```
+
+## API
+
+- `current(unit)`
+  - `unit` - current timestamp unit. (default: 's') [OPTIONAL]
+ 
+
+- `fromDatetimeString(options)`
+  - `options.format` - datetime string format. (default: 'YYYY-MM-DDTHH:mm:ss.SSSZ') [OPTIONAL]
+  - `options.timezone` - datetime string timezone. (default: 'Asia/Shanghai') [OPTIONAL]
+  - `options.unit` - datetime string unit. (default: 's') [OPTIONAL]
+ 
+
+- `toDatetimeString(options)`
+  - `options.format` - datetime string format. (default: 'YYYY-MM-DDTHH:mm:ss.SSSZ') [OPTIONAL]
+  - `options.timezone` - datetime string timezone. (default: 'Asia/Shanghai') [OPTIONAL]
+  - `options.unit` - datetime string unit. (default: 's') [OPTIONAL]
+ 
+
+## Tests
 
 ```
+npm install
+npm run test
+```
+
+## LICENSE
+
+node-timestamp is licensed under the MIT license.
