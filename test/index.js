@@ -1,6 +1,7 @@
 'use strict'
 
 const timestamp = require('../src')
+const moment = require('moment-timezone')
 const chai = require('chai')
 const expect = chai.expect
 
@@ -84,7 +85,7 @@ describe('toDatetimeString()', () => {
     const offsetMinute = ('' + Math.abs(offset) % 60).padStart(2, '0')
     const currentTimestampInSecond = Math.floor(currentDatetime.getTime() / 1000)
     const currentDatetimeString = (new Date((currentTimestampInSecond - offset * 60) * 1000)).toISOString().slice(0, -1) + offsetSign + offsetHour + ':' + offsetMinute
-    const result = timestamp.toDatetimeString(currentTimestampInSecond)
+    const result = timestamp.toDatetimeString(currentTimestampInSecond, { timezone: moment.tz.guess() })
     expect(result).to.equal(currentDatetimeString)
   })
 
@@ -96,7 +97,7 @@ describe('toDatetimeString()', () => {
     const date = ('' + currentDatetime.getDate()).padStart(2, '0')
     const datetimeString = `${year}-${month}-${date}`
     const format = 'YYYY-MM-DD'
-    const result = timestamp.toDatetimeString(currentTimestamp, { format })
+    const result = timestamp.toDatetimeString(currentTimestamp, { format, timezone: moment.tz.guess() })
     expect(result).to.equal(datetimeString)
   })
 
@@ -107,7 +108,7 @@ describe('toDatetimeString()', () => {
     const minute = ('' + currentDatetime.getMinutes()).padStart(2, '0')
     const datetimeString = `${hour}:${minute}`
     const format = 'HH:mm'
-    const result = timestamp.toDatetimeString(currentTimestamp, { format })
+    const result = timestamp.toDatetimeString(currentTimestamp, { format, timezone: moment.tz.guess() })
     expect(result).to.equal(datetimeString)
   })
 
