@@ -28,6 +28,16 @@ class Timestamp {
     return Math.floor(Date.now() / (this.unit === 'ms' ? 1 : 1000))
   }
 
+  fromDate(date, options = {}) {
+    const unit = options.unit ? options.unit : this.unit
+    return Math.floor(date.getTime() / (unit === 'ms' ? 1 : 1000))
+  }
+
+  toDate(timestamp, options = {}) {
+    const unit = options.unit ? options.unit : this.unit
+    return new Date(timestamp * (unit === 'ms' ? 1 : 1000))
+  }
+
   fromDatetimeString(datetimeString, options = {}) {
     const format = options.format ? options.format : this.format
     const timezone = options.timezone ? options.timezone : this.timezone

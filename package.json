@@ -1,6 +1,6 @@
 {
   "name": "@rockyli/timestamp",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A lightweight Javascript library to convert between timestamp and datetime string",
   "main": "lib/index.js",
   "scripts": {
@@ -23,7 +23,7 @@
     "babel-core": "^6.26.3",
     "babel-preset-es2015": "^6.24.1",
     "chai": "^4.2.0",
-    "mocha": "^6.0.2"
+    "mocha": "^6.1.4"
   },
   "directories": {
     "lib": "lib",

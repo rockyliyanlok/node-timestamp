@@ -11,12 +11,6 @@ const getRandomDate = () => {
   return new Date(start.getTime() + (Math.random() * (end.getTime() - start.getTime())))
 }
 
-const getRandomTimestamp = () => {
-  const start = new Date('1970-01-01 00:00:00+00:00')
-  const end = new Date('2038-12-31 00:00:00+00:00')
-  return Math.floor(start.getTime() + (Math.random() * (end.getTime() - start.getTime())))
-}
-
 describe('current()', () => {
   
   it('returns current UNIX timestamp in seconds', () => {
@@ -31,6 +25,19 @@ describe('current()', () => {
     expect(result).to.be.a('number')
     expect(('' + result).length).to.be.at.most(13)
     expect(result).to.satisfy(timestamp => (new Date(timestamp)).getTime() > 0)
+  })
+
+})
+
+describe('fromDate()', () => {
+  
+  it('returns UNIX timestamp from Date object in seconds', () => {
+    const randomDate = getRandomDate()
+    const result = timestamp.fromDate(randomDate)
+    expect(result).to.be.a('number')
+    expect(('' + result).length).to.be.at.most(10)
+    expect(result).to.satisfy(timestamp => (new Date(timestamp)).getTime() > 0)
+    expect(result).to.equal(Math.floor(randomDate.getTime() / 1000))
   })
 
 })
@@ -71,6 +78,17 @@ describe('fromDatetimeString()', () => {
     expect(('' + result).length).to.be.at.most(10)
     expect(result).to.satisfy(timestamp => (new Date(timestamp)).getTime() > 0)
     expect(result).to.equal(randomTimestampInSecond)
+  })
+
+})
+
+describe('toDate()', () => {
+  
+  it('returns Date object from current timestamp', () => {
+    const currentDate = new Date()
+    const currentTimestamp = currentDate.getTime()
+    const result = timestamp.toDate(currentTimestamp, { unit: 'ms' })
+    expect(result.toISOString()).to.equal(currentDate.toISOString())
   })
 
 })
